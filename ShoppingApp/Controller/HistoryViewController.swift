@@ -20,6 +20,7 @@ class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
+        print("sakouaaaa")
         //APIから投稿履歴を取得
                 Api()
         
