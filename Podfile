@@ -8,4 +8,5 @@ target 'ShoppingApp' do
   # Pods for ShoppingApp
 pod 'Alamofire'
 pod 'SwiftyJSON'
+pod 'RealmSwift'
 end

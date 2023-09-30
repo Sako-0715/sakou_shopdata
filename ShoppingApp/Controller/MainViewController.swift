@@ -9,6 +9,7 @@ import UIKit
 import Photos
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 class MainViewController: UIViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -23,6 +24,9 @@ class MainViewController: UIViewController,UITextFieldDelegate,UIPickerViewDeleg
     var JanlPicker = UIPickerView()
     var PricePicker = UIPickerView()
     var ProdactNameString = ""
+    let realm = try! Realm()
+    
+    var documentDirectoryFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
     //ジャンル
     var JanlString = [String]()
@@ -110,17 +114,25 @@ class MainViewController: UIViewController,UITextFieldDelegate,UIPickerViewDeleg
     
     
     @IBAction func SendButton(_ sender: Any) {
-        
         //データーベースに送信する
         let url = "http://localhost:8888/shoping.php"
         let date = Date() // May 4, 2020, 11:16 AM
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let strDate = formatter.string(from: date) // 2020-05-04 11:16:31
-        ImageCamera.image!.jpegData(compressionQuality: 1)
-        let shopdata:[String: Any] = ["Janl":JanlText.text!,"Price":PriceText.text!,"Prodact": ProdactText.text!,"Shop_Image": ImageCamera.image,"date":strDate]
+        var shopdata:[String: Any] = ["Janl":JanlText.text!,"Price":PriceText.text!,"Prodact": ProdactText.text!,"date":strDate]
         
-        AF.request(url,method:.post,parameters: shopdata,encoding:URLEncoding.default).responseData { response in
+//        if let image = ImageCamera.image {
+//            if let imageData = image.jpegData(compressionQuality: 0.5) {
+//                // DataをBase64エンコードした文字列に変換
+//                let base64String = imageData.base64EncodedString(options: [])
+//                
+//                // base64Stringをサーバーに送信するか、必要な用途に使用できます
+//                shopdata["Shop_Image"] = base64String
+//            }
+//        }
+        
+        AF.request(url,method:.post,parameters: shopdata,encoding:URLEncoding.default).validate().responseData { response in
             switch response.result {
             case.success(let data):
                 //print(String(data: data, encoding: .utf8)!)
@@ -163,17 +175,24 @@ class MainViewController: UIViewController,UITextFieldDelegate,UIPickerViewDeleg
         }
     }
         
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            
-            
-            if let pickedImage = info[.editedImage] as? UIImage
-            {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.editedImage] as? UIImage {
+            if let imageData = pickedImage.jpegData(compressionQuality: 1.0) {
+                do {
+                    let realm = try Realm()
+                    let imageModel = ImageModel()
+                    imageModel.imageData = imageData
+                    try realm.write {
+                        realm.add(imageModel)
+                    }
+                } catch {
+                    print("Realmへの保存エラー: \(error.localizedDescription)")
+                }
                 ImageCamera.image = pickedImage
-                //閉じる処理
                 picker.dismiss(animated: true, completion: nil)
             }
-            
         }
+    }
         
         // 撮影がキャンセルされた時に呼ばれる
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

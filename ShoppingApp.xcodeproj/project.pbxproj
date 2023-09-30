@@ -16,6 +16,8 @@
 		4F0A45C32AC1DFCA005C32BE /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A45C22AC1DFCA005C32BE /* Util.swift */; };
 		4F0A45C52AC1E2FB005C32BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A45C42AC1E2FB005C32BE /* MainViewController.swift */; };
 		4F0A45C72AC1E39F005C32BE /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A45C62AC1E39F005C32BE /* HistoryViewController.swift */; };
+		4F4653ED2AC7C8FB00D55CF3 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4653EC2AC7C8FB00D55CF3 /* ImageModel.swift */; };
+		4F92DE2D2AC5B32C00A84C4E /* ShopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F92DE2C2AC5B32C00A84C4E /* ShopModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		4F0A45C22AC1DFCA005C32BE /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		4F0A45C42AC1E2FB005C32BE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4F0A45C62AC1E39F005C32BE /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		4F4653EC2AC7C8FB00D55CF3 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		4F92DE2C2AC5B32C00A84C4E /* ShopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopModel.swift; sourceTree = "<group>"; };
 		6A77806FC0A39130E0E2A200 /* Pods-ShoppingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApp.debug.xcconfig"; path = "Target Support Files/Pods-ShoppingApp/Pods-ShoppingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C9E36C9FDC09916104946EF1 /* Pods-ShoppingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApp.release.xcconfig"; path = "Target Support Files/Pods-ShoppingApp/Pods-ShoppingApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +79,7 @@
 				4F0A45B22AC1DDEF005C32BE /* Assets.xcassets */,
 				4F0A45B42AC1DDEF005C32BE /* LaunchScreen.storyboard */,
 				4F0A45B72AC1DDEF005C32BE /* Info.plist */,
+				4F4653EC2AC7C8FB00D55CF3 /* ImageModel.swift */,
 			);
 			path = ShoppingApp;
 			sourceTree = "<group>";
@@ -100,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				4F0A45C22AC1DFCA005C32BE /* Util.swift */,
+				4F92DE2C2AC5B32C00A84C4E /* ShopModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -241,6 +247,8 @@
 				4F0A45AC2AC1DDEC005C32BE /* SceneDelegate.swift in Sources */,
 				4F0A45C72AC1E39F005C32BE /* HistoryViewController.swift in Sources */,
 				4F0A45C52AC1E2FB005C32BE /* MainViewController.swift in Sources */,
+				4F92DE2D2AC5B32C00A84C4E /* ShopModel.swift in Sources */,
+				4F4653ED2AC7C8FB00D55CF3 /* ImageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
